@@ -16,21 +16,45 @@ export default class HashTable {
   }
 
   put( key, value ) {
-    let hashedKey = this.hash( key )
-    console.log("Key--> ", key, 'HKey-->', hashedKey, 'value-->', value);
-    this.hashTable[hashedKey] = value
+    const hashedKey = this.hash( key )
+    this.hashTable[hashedKey] = { 'key': key, 'value':value }
     this.count++
   }
 
   get( key ) {
-    let hashedKey = this.hash( key )
-    let value = this.hashTable[hashedKey]
-    console.log("Key--> ", key, 'HKey-->', hashedKey, 'value-->', value)
+    const hashedKey = this.hash( key )
+    const value = this.hashTable[hashedKey].value
     if( value == undefined ) {
       throw new Error('Key does not exist')
     }
     return value
+  }
 
+  contains( key )  {
+    const hashedKey = this.hash( key )
+    const value = this.hashTable[hashedKey]
+    return Boolean(value)
+  }
+
+  iterate( func ) {
+    if(this.size < 1){
+      throw new Error('Can not iterate on an empty HashTable')
+    }
+    for(let pair of this.hashTable) {
+      if(!pair) {continue}
+      console.log('IN FOR OF--->', this.hashTable);
+      console.log('IN FOR OF--->', pair);
+      func( pair.key, pair.value )
+    }
+  }
+
+  remove( key ) {
+    const hashedKey = this.hash( key )
+    const value = this.hashTable[hashedKey].value
+    if( value == undefined ) {
+      throw new Error('Attempting to remove a key that does not exist')
+    }
+    delete this.hashTable[hashedKey]
   }
 
   size() {

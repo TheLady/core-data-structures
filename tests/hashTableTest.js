@@ -47,8 +47,8 @@ describe('HashTable', () => {
       myHashTable.put('one', 'cheese')
       myHashTable.put('two', 'feet')
       myHashTable.put('three', 'lemonade')
-      expect(myHashTable.get('nothing')).to.equal(false)
-      expect(myHashTable.get('two')).to.equal(true)
+      expect(myHashTable.contains('nothing')).to.equal(false)
+      expect(myHashTable.contains('two')).to.equal(true)
     })
   })
 
@@ -62,10 +62,11 @@ describe('HashTable', () => {
       const newHashTable = new HashTable()
       myHashTable.iterate((k, v) => {
         let value = v + ' but new'
-        NewHashTable.put(k, value)
+        newHashTable.put(k, value)
       })
-      expect(NewHashTable.get('one')).to.equal('cheese but new')
-      expect(NewHashTable.get('two')).to.equal('feet but new')
+      expect(newHashTable.get('one')).to.equal('cheese but new')
+      expect(newHashTable.get('two')).to.equal('feet but new')
+      console.log(newHashTable);
     })
   })
 
