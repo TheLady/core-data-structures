@@ -5,15 +5,6 @@ import Set from '../src/set'
 chai.use(chaiChange)
 
 describe('Set', () => {
-    // let mySet
-    // let emptySet
-    // beforeEach(() => {
-    //   mySet = new Set()
-    //   emptySet= new Set()
-    //   mySet.add('foo')
-    //   mySet.add(40)
-    //   mySet.add('last')
-    // })
 
   it('exists', () => {
     expect(Set).to.be.a('function')
